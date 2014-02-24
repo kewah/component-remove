@@ -1,0 +1,14 @@
+{
+  "name": "component",
+  "scripts": [
+    "index.js",
+    "foo.js"
+  ],
+  "styles": [
+    "index.css",
+    "bar.styl"
+  ],
+  "templates": [
+    "templates/tpl.html"
+  ]
+}

@@ -1,0 +1,83 @@
+#!/usr/bin/env node
+
+var fs = require('fs-extra');
+var path = require('path');
+var resolve = path.resolve;
+var component = require('component');
+var utils = component.utils;
+var program = require('commander');
+var pkg = require('../package.json');
+
+
+program
+  .version(pkg.version)
+  .description(pkg.description)
+  .parse(process.argv);
+
+if (!program.args.length) {
+  program.help();
+}
+
+if (!fs.existsSync('component.json')) {
+  fail('component.json not found');
+}
+
+var manifestPath = resolve('component.json');
+var manifest = fs.readJsonSync(manifestPath);
+
+program.args.forEach(function(file) {
+  switch(path.extname(file)) {
+    case '.js':
+    case '.coffee':
+      removeFromManifest('scripts', file);
+      break;
+
+    case '.css':
+    case '.styl':
+    case '.scss':
+    case '.sass':
+      removeFromManifest('styles', file);
+      break;
+
+    case '.html':
+    case '.jade':
+    case '.hbs':
+      removeFromManifest('templates', file);
+      break;
+
+    default:
+      utils.error('The extension "' + path.extname(file) + '" is not recognized. Don\'t hesitate to make a PR');
+  }
+
+  if (fs.existsSync(file)) {
+    fs.remove(file, fail);
+    utils.log('deleted', file);
+  }
+});
+
+fs.writeJson(manifestPath, manifest, fail);
+
+
+function removeFromManifest(type, file) {
+  if (!manifest[type]) {
+    return;
+  }
+
+  var i = manifest[type].indexOf(file);
+
+  if (i < 0) {
+    return;
+  }
+
+  manifest[type].splice(i, 1);
+  utils.log('removed', file);
+}
+
+function fail(msg) {
+  if (!msg) {
+    return;
+  }
+
+  utils.error(msg);
+  process.exit(1);
+}

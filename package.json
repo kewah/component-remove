@@ -1,0 +1,36 @@
+{
+  "name": "component-remove",
+  "version": "0.0.1",
+  "description": "Remove files from component.json",
+  "author": "kewah <keuwah@gmail.com>",
+  "license": "MIT",
+  "keywords": [
+    "component",
+    "remove",
+    "file",
+    "component.json"
+  ],
+  "bin": {
+    "component-remove": "bin/component-remove"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/mocha --reporter spec"
+  },
+  "bugs": {
+    "url": "https://github.com/kewah/component-remove/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/kewah/component-remove.git"
+  },
+  "homepage": "https://github.com/kewah/component-remove",
+  "dependencies": {
+    "component": "^0.19.5",
+    "commander": "^2.1.0",
+    "fs-extra": "^0.8.1"
+  },
+  "devDependencies": {
+    "mocha": "^1.17.1",
+    "chai": "^1.9.0"
+  }
+}
