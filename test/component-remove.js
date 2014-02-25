@@ -107,6 +107,21 @@ describe('component uninstall', function() {
       });
     });
   });
+
+  it('should keep the file', function(done) {
+    removeExec('index.js -k', function(err) {
+      if (err) return done(err);
+
+      readComponent(function(err, component) {
+        if (err) return done(err);
+
+        assert.notInclude(component.scripts, 'index.js');
+        assert.isTrue(fileExists('index.js'));
+
+        done();
+      });
+    });
+  });
 });
 
 

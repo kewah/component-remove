@@ -20,6 +20,8 @@ It is possible to remove multiple files:
 component remove index.js foo.css tpl.html
 ```
 
+With the flag `-k` or `--keep-file` the reference is removed but the file is not deleted.
+
 ## Supported extensions
 
 **scripts:**

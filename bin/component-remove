@@ -10,6 +10,7 @@ var pkg = require('../package.json');
 
 
 program
+  .option('-k, --keep-file', 'Don\'t remove the file')
   .version(pkg.version)
   .description(pkg.description)
   .parse(process.argv);
@@ -49,7 +50,7 @@ program.args.forEach(function(file) {
       utils.error('The extension "' + path.extname(file) + '" is not recognized. Don\'t hesitate to make a PR');
   }
 
-  if (fs.existsSync(file)) {
+  if (!program.keepFile && fs.existsSync(file)) {
     fs.remove(file, fail);
     utils.log('deleted', file);
   }
