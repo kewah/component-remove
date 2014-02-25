@@ -1,6 +1,6 @@
 {
   "name": "component-remove",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Remove files from component.json",
   "author": "kewah <keuwah@gmail.com>",
   "license": "MIT",
