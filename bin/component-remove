@@ -70,6 +70,10 @@ function removeFromManifest(type, file) {
     return;
   }
 
+  if (manifest.main === file) {
+    delete manifest.main;
+  }
+
   manifest[type].splice(i, 1);
   utils.log('removed', file);
 }

@@ -1,5 +1,6 @@
 {
   "name": "component",
+  "main": "index.js",
   "scripts": [
     "index.js",
     "foo.js"

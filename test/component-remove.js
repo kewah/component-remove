@@ -122,6 +122,22 @@ describe('component uninstall', function() {
       });
     });
   });
+
+  it('should remove the `main` property from component.json', function(done) {
+   removeExec('index.js', function(err) {
+      if (err) return done(err);
+
+      readComponent(function(err, component) {
+        if (err) return done(err);
+
+        assert.notInclude(component.scripts, 'index.js');
+        assert.isUndefined(component.main);
+        assert.isFalse(fileExists('index.js'));
+
+        done();
+      });
+    });
+  });
 });
 
 
