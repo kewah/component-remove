@@ -25,9 +25,9 @@
   },
   "homepage": "https://github.com/kewah/component-remove",
   "dependencies": {
-    "component": "^0.19.5",
     "commander": "^2.1.0",
-    "fs-extra": "^0.8.1"
+    "fs-extra": "^0.8.1",
+    "component-consoler": "^1.1.1"
   },
   "devDependencies": {
     "mocha": "^1.17.1",
